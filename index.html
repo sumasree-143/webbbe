@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn Pro - Master Programming Skills</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                CodeLearn Pro
+            </div>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showSection('home')"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="showSection('tutorials')"><i class="fas fa-book"></i> Tutorials</a></li>
+                <li><a href="#" onclick="showSection('projects')"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#" onclick="showSection('about')"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="#" onclick="showSection('contact')"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><input type="text" class="search-bar" placeholder="Search tutorials..." onkeyup="searchContent(this.value)"></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn btn-secondary" onclick="showAuthModal('login')">Log In</button>
+                <button class="btn btn-primary" onclick="showAuthModal('signup')">Sign Up</button>
+                <button class="btn btn-primary hidden" id="dashboardBtn" onclick="showSection('dashboard')">Dashboard</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section-content">
+            <div class="hero">
+                <div class="container">
+                    <h1>Master Programming Skills</h1>
+                    <p>Interactive tutorials, hands-on projects, and a supportive community to accelerate your coding journey</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="showSection('tutorials')">
+                            <i class="fas fa-play-circle"></i> Start Learning
+                        </button>
+                        <button class="btn btn-secondary" onclick="showSection('projects')">
+                            <i class="fas fa-folder-open"></i> Browse Projects
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="featured-section">
+                    <h2>Featured Content</h2>
+                    <div class="slider">
+                        <div class="slider-content" id="sliderContent">
+                            <div class="slide">
+                                <h3>🚀 New: Python Machine Learning</h3>
+                                <p>Learn AI and ML with hands-on projects and real-world examples</p>
+                                <button class="btn btn-primary">Start Now</button>
+                            </div>
+                            <div class="slide">
+                                <h3>⚡ JavaScript Mastery</h3>
+                                <p>Build interactive web applications from scratch</p>
+                                <button class="btn btn-primary">Explore</button>
+                            </div>
+                            <div class="slide">
+                                <h3>🎯 Project Challenge</h3>
+                                <p>Build a full-stack web application in 30 days</p>
+                                <button class="btn btn-primary">Join Challenge</button>
+                            </div>
+                        </div>
+                        <div class="slider-nav">
+                            <div class="slider-dot active" onclick="goToSlide(0)"></div>
+                            <div class="slider-dot" onclick="goToSlide(1)"></div>
+                            <div class="slider-dot" onclick="goToSlide(2)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New achievements section -->
+                <div class="section">
+                    <h2>Student Achievements</h2>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem;">
+                            <div style="background: white; padding: 1.5rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 300px;">
+                                <div style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <h3>Top Learner of the Month</h3>
+                                <p>Sarah Johnson completed 12 tutorials and 5 projects this month</p>
+                                <span class="achievement-badge">Python Expert</span>
+                                <span class="achievement-badge">Web Developer</span>
+                            </div>
+                            
+                            <div style="background: white; padding: 1.5rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 300px;">
+                                <div style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3>Project Showcase Winner</h3>
+                                <p>Mike Chen built an e-commerce platform with React and Node.js</p>
+                                <span class="achievement-badge">React Master</span>
+                                <span class="achievement-badge">Full Stack</span>
+                            </div>
+                            
+                            <div style="background: white; padding: 1.5rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 300px;">
+                                <div style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3>Fastest Progress</h3>
+                                <p>Alex Kim went from beginner to intermediate in just 3 weeks</p>
+                                <span class="achievement-badge">JavaScript</span>
+                                <span class="achievement-badge">Quick Learner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorials Section -->
+        <section id="tutorials" class="section-content hidden">
+            <div class="container">
+                <div class="section">
+                    <h2>Programming Tutorials</h2>
+                    
+                    <div class="filters">
+                        <button class="filter-btn active" onclick="filterTutorials('all')">All</button>
+                        <button class="filter-btn" onclick="filterTutorials('python')">Python</button>
+                        <button class="filter-btn" onclick="filterTutorials('javascript')">JavaScript</button>
+                        <button class="filter-btn" onclick="filterTutorials('java')">Java</button>
+                        <button class="filter-btn" onclick="filterTutorials('cpp')">C++</button>
+                        <button class="filter-btn" onclick="filterTutorials('beginner')">Beginner</button>
+                        <button class="filter-btn" onclick="filterTutorials('intermediate')">Intermediate</button>
+                        <button class="filter-btn" onclick="filterTutorials('advanced')">Advanced</button>
+                    </div>
+
+                    <div class="tutorials-grid" id="tutorialsGrid">
+                        <div class="tutorial-card" data-language="python" data-difficulty="beginner">
+                            <div class="card-badge">Popular</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-basics')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Python Basics</h3>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                            <p>Learn Python fundamentals including variables, loops, and functions.</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <p>Progress: 65% (13/20 lessons)</p>
+                            <button class="btn btn-primary" onclick="startTutorial('python-basics')">
+                                <i class="fas fa-play"></i> Continue Tutorial
+                            </button>
+                        </div>
+
+                        <div class="tutorial-card" data-language="javascript" data-difficulty="intermediate">
+                            <div class="card-badge">New</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-dom')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>JavaScript DOM Manipulation</h3>
+                                <span class="difficulty intermediate">Intermediate</span>
+                            </div>
+                            <p>Master dynamic web development with interactive JavaScript.</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>Progress: 0% (0/15 lessons)</p>
+                            <button class="btn btn-primary" onclick="startTutorial('js-dom')">
+                                <i class="fas fa-play"></i> Start Tutorial
+                            </button>
+                        </div>
+
+                        <div class="tutorial-card" data-language="java" data-difficulty="beginner">
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'java-oop')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Java Object-Oriented Programming</h3>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                            <p>Understand classes, objects, inheritance, and polymorphism.</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                            <p>Progress: 30% (6/20 lessons)</p>
+                            <button class="btn btn-primary" onclick="startTutorial('java-oop')">
+                                <i class="fas fa-play"></i> Continue Tutorial
+                            </button>
+                        </div>
+
+                        <div class="tutorial-card" data-language="cpp" data-difficulty="advanced">
+                            <div class="card-badge">Challenging</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'cpp-ds')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>C++ Data Structures</h3>
+                                <span class="difficulty advanced">Advanced</span>
+                            </div>
+                            <p>Implement advanced data structures and algorithms.</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>Progress: 0% (0/25 lessons)</p>
+                            <button class="btn btn-primary" onclick="startTutorial('cpp-ds')">
+                                <i class="fas fa-play"></i> Start Tutorial
+                            </button>
+                        </div>
+
+                        <div class="tutorial-card" data-language="python" data-difficulty="intermediate">
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-web')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Python Web Development</h3>
+                                <span class="difficulty intermediate">Intermediate</span>
+                            </div>
+                            <p>Build web applications using Flask and Django frameworks.</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <p>Progress: 45% (9/20 lessons)</p>
+                            <button class="btn btn-primary" onclick="startTutorial('python-web')">
+                                <i class="fas fa-play"></i> Continue Tutorial
+                            </button>
+                        </div>
+
+                        <div class="tutorial-card" data-language="javascript" data-difficulty="advanced">
+                            <div class="card-badge">Hot</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'react-advanced')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>React.js Advanced Concepts</h3>
+                                <span class="difficulty advanced">Advanced</span>
+                            </div>
+                            <p>Master hooks, context, performance optimization, and testing.</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>Progress: 0% (0/18 lessons)</p>
+                            <button class="btn btn-primary" onclick="startTutorial('react-advanced')">
+                                <i class="fas fa-play"></i> Start Tutorial
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-content hidden">
+            <div class="container">
+                <div class="section">
+                    <h2>Coding Projects</h2>
+                    
+                    <div class="filters">
+                        <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+                        <button class="filter-btn" onclick="filterProjects('beginner')">Beginner</button>
+                        <button class="filter-btn" onclick="filterProjects('intermediate')">Intermediate</button>
+                        <button class="filter-btn" onclick="filterProjects('advanced')">Advanced</button>
+                    </div>
+
+                    <div class="projects-grid" id="projectsGrid">
+                        <div class="project-card" data-difficulty="beginner">
+                            <div class="card-badge">Easy</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'calculator')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Calculator App</h3>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                            <p>Build a functional calculator with HTML, CSS, and JavaScript.</p>
+                            <p><strong>Estimated Time:</strong> 2-3 hours</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star empty">☆</span>
+                                <span>(4.2/5 - 156 reviews)</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-primary" onclick="viewProject('calculator')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="tryProject('calculator')">
+                                    <i class="fas fa-code"></i> Try Online
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-difficulty="intermediate">
+                            <div class="card-badge">Popular</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'weather')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Weather Dashboard</h3>
+                                <span class="difficulty intermediate">Intermediate</span>
+                            </div>
+                            <p>Create a weather app using APIs and responsive design.</p>
+                            <p><strong>Estimated Time:</strong> 5-6 hours</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span>(4.7/5 - 89 reviews)</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-primary" onclick="viewProject('weather')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="tryProject('weather')">
+                                    <i class="fas fa-code"></i> Try Online
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-difficulty="advanced">
+                            <div class="card-badge">Complex</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'ecommerce')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>E-commerce Platform</h3>
+                                <span class="difficulty advanced">Advanced</span>
+                            </div>
+                            <p>Full-stack e-commerce site with React, Node.js, and MongoDB.</p>
+                            <p><strong>Estimated Time:</strong> 20-25 hours</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span>(4.9/5 - 34 reviews)</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-primary" onclick="viewProject('ecommerce')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="tryProject('ecommerce')">
+                                    <i class="fas fa-code"></i> Try Online
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-difficulty="beginner">
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'todo')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>To-Do List App</h3>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                            <p>Interactive task management app with local storage.</p>
+                            <p><strong>Estimated Time:</strong> 3-4 hours</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star empty">☆</span>
+                                <span>(4.1/5 - 203 reviews)</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-primary" onclick="viewProject('todo')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="tryProject('todo')">
+                                    <i class="fas fa-code"></i> Try Online
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-difficulty="intermediate">
+                            <div class="card-badge">New</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'recipe')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Recipe Finder</h3>
+                                <span class="difficulty intermediate">Intermediate</span>
+                            </div>
+                            <p>Search and save recipes using external APIs and database.</p>
+                            <p><strong>Estimated Time:</strong> 8-10 hours</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span>(4.6/5 - 67 reviews)</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-primary" onclick="viewProject('recipe')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="tryProject('recipe')">
+                                    <i class="fas fa-code"></i> Try Online
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-difficulty="advanced">
+                            <div class="card-badge">Featured</div>
+                            <button class="bookmark-btn" onclick="toggleBookmark(this, 'social')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                            <div class="card-header">
+                                <h3>Social Media Dashboard</h3>
+                                <span class="difficulty advanced">Advanced</span>
+                            </div>
+                            <p>Real-time social media analytics with charts and notifications.</p>
+                            <p><strong>Estimated Time:</strong> 15-18 hours</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span>(4.8/5 - 45 reviews)</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-primary" onclick="viewProject('social')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="tryProject('social')">
+                                    <i class="fas fa-code"></i> Try Online
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-content hidden">
+            <div class="container">
+                <div class="section">
+                    <h2>About CodeLearn Pro</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                            CodeLearn Pro is an advanced interactive programming education platform designed to make learning to code engaging, practical, and accessible for everyone. Our mission is to empower developers at all levels with the skills they need to succeed in today's tech industry.
+                        </p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-rocket"></i> Interactive Learning</h3>
+                                <p>Hands-on tutorials with live code editors and instant feedback</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-code"></i> Real Projects</h3>
+                                <p>Build portfolio-worthy projects that showcase your skills</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-users"></i> Community Support</h3>
+                                <p>Connect with fellow learners and experienced developers</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 3rem; text-align: left; background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <h3 style="text-align: center; margin-bottom: 1.5rem;">Our Team</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                                <div style="text-align: center;">
+                                    <div style="width: 120px; height: 120px; border-radius: 50%; background: #667eea; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Lead Instructor</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="width: 120px; height: 120px; border-radius: 50%; background: #764ba2; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <h4>Mike Chen</h4>
+                                    <p>Curriculum Developer</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="width: 120px; height: 120px; border-radius: 50%; background: #42e695; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <h4>Alex Kim</h4>
+                                    <p>Community Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-content hidden">
+            <div class="container">
+                <div class="section">
+                    <h2>Contact Us</h2>
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <form id="contactForm">
+                            <div style="margin-bottom: 1.2rem;">
+                                <input type="text" placeholder="Your Name" required style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 5px;">
+                            </div>
+                            <div style="margin-bottom: 1.2rem;">
+                                <input type="email" placeholder="Your Email" required style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 5px;">
+                            </div>
+                            <div style="margin-bottom: 1.2rem;">
+                                <select style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 5px;">
+                                    <option>General Inquiry</option>
+                                    <option>Technical Support</option>
+                                    <option>Course Suggestion</option>
+                                    <option>Partnership</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 1.2rem;">
+                                <textarea placeholder="Your Message" rows="5" required style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section-content hidden">
+            <div class="container">
+                <div class="section">
+                    <h2>Your Learning Dashboard</h2>
+                    <div class="dashboard">
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-book"></i> Tutorials Completed</h3>
+                            <div class="stat-number">8</div>
+                            <p>Keep up the great work!</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-project-diagram"></i> Projects Finished</h3>
+                            <div class="stat-number">3</div>
+                            <p>Ready for the next challenge?</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-clock"></i> Hours Learned</h3>
+                            <div class="stat-number">24</div>
+                            <p>You're making great progress!</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-fire"></i> Current Streak</h3>
+                            <div class="stat-number">5 days</div>
+                            <p>Don't break the chain!</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 3rem;">
+                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        <div style="background: white; border-radius: 10px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <div>
+                                    <strong>Python Basics - Variables and Data Types</strong>
+                                    <p style="color: #666; margin: 0;">Completed 2 hours ago</p>
+                                </div>
+                                <span style="color: #28a745;"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <div>
+                                    <strong>Calculator App Project</strong>
+                                    <p style="color: #666; margin: 0;">Started yesterday</p>
+                                </div>
+                                <span style="color: #ffc107;"><i class="fas fa-hourglass-half"></i> In Progress</span>
+                            </div>
+                            <div style="display: flex; justify-content: between; align-items: center;">
+                                <div>
+                                    <strong>JavaScript DOM Manipulation</strong>
+                                    <p style="color: #666; margin: 0;">Bookmarked 3 days ago</p>
+                                </div>
+                                <span style="color: #6c757d;"><i class="fas fa-bookmark"></i> Saved</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 3rem;">
+                        <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                            <div style="background: white; border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; color: #ffd700;">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.3rem;">First Steps</h4>
+                                    <p>Completed your first tutorial</p>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; color: #c0c0c0;">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.3rem;">Project Master</h4>
+                                    <p>Completed 3 projects</p>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; color: #cd7f32;">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.3rem;">Streak Keeper</h4>
+                                    <p>5 consecutive days of learning</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Authentication -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('authModal')">&times;</span>
+            <div id="authContent">
+                <!-- Auth form will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Tutorial/Project Details -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('detailModal')">&times;</span>
+            <div id="detailContent">
+                <!-- Detail content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Code Editor -->
+    <div id="editorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editorModal')">&times;</span>
+            <div id="editorContent">
+                <h3>Interactive Code Editor</h3>
+                <textarea class="code-editor" id="codeEditor" placeholder="// Write your code here...">console.log('Hello, World!');</textarea>
+                <div class="editor-buttons">
+                    <button class="run-btn" onclick="runCode()">
+                        <i class="fas fa-play"></i> Run Code
+                    </button>
+                    <button class="reset-btn" onclick="resetCode()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+                <div id="output" style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin-top: 1rem; font-family: monospace; min-height: 100px;">
+                    <strong>Output:</strong><br>
+                    <div id="outputContent">Click "Run Code" to see output</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Notification message here</span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('tutorials')">Tutorials</a>
+                <a href="#" onclick="showSection('projects')">Projects</a>
+                <a href="#" onclick="showSection('about')">About</a>
+                <a href="#" onclick="showSection('contact')">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2025 CodeLearn Pro. All rights reserved.</p>
+            <p>Contact: info@codelearnpro.com | Phone: (555) 123-4567</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
